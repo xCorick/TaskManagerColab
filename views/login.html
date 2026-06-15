@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>SoftDev Solutions · TaskManager</title>
+    <link rel="stylesheet" href="../styles/login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Particulas decorativas de fondo -->
+    <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <div class="background-gradient"></div>
+    <div class="background-blur"></div>
+    
+    <div class="login-container">
+        <div class="login-card">
+            <div class="card-glow"></div>
+            <div class="card-border"></div>
+
+            <div class="login-header">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#2563EB"/>
+                                    <stop offset="100%" stop-color="#60A5FA"/>
+                                </linearGradient>
+                            </defs>
+                            <rect width="32" height="32" rx="10" fill="url(#logoGrad)"/>
+                            <path d="M8 16L13 11L18 16L23 11" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M8 21L13 16L18 21L23 16" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="logo-text">
+                        <span class="logo-main">TaskManager</span>
+                        <span class="logo-sub">by SoftDev Solutions</span>
+                    </div>
+                </div>
+                <h1>Bienvenido de vuelta</h1>
+                <p>Accede a tu panel de control y gestiona tus tareas</p>
+            </div>
+
+            <form id="loginForm" class="login-form">
+                <div class="input-group">
+                    <label for="email">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                            <polyline points="22,6 12,13 2,6"/>
+                        </svg>
+                        Correo electrónico
+                    </label>
+                    <input type="email" id="email" name="email" placeholder="admin@softdev.com" autocomplete="off">
+                </div>
+
+                <div class="input-group">
+                    <label for="password">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                        </svg>
+                        Contraseña
+                    </label>
+                    <input type="password" id="password" name="password" placeholder="admin123">
+                </div>
+
+                <button type="submit" class="btn-primary">
+                    <span>Iniciar sesion</span>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="5" y1="12" x2="19" y2="12"/>
+                        <polyline points="12 5 19 12 12 19"/>
+                    </svg>
+                </button>
+
+                <!-- Credenciales de demostracion -->
+                <div class="demo-credentials">
+                    <div class="demo-header">
+                        <span class="demo-title">Credencial de acceso</span>
+                        <span class="demo-badge">Admin</span>
+                    </div>
+                    <div class="demo-grid">
+                        <div class="demo-card-item" data-email="admin@softdev.com" data-password="admin123">
+                            <div class="demo-role">
+                                Administrador
+                            </div>
+                            <div class="demo-details">
+                                <code>admin@softdev.com</code>
+                                <code>admin123</code>
+                            </div>
+                            <div class="demo-hover-fill"></div>
+                        </div>
+                    </div>
+                    <p class="demo-note">Haz clic en la credencial para autocompletar</p>
+                </div>
+            </form>
+
+            <div id="errorMessage" class="error-message" style="display: none;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="12" y1="8" x2="12" y2="12"/>
+                    <circle cx="12" cy="16" r="0.5" fill="currentColor" stroke="none"/>
+                </svg>
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <script src="../scripts/login.js"></script>
+</body>
+</html>
