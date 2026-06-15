@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskManager - SoftDev Solutions</title>
+    <link rel="stylesheet" href="../styles/index.css">
+
+</head>
+
+<body>
+
+    <div class="background-gradient"></div>
+
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <div class="logo-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 11l3 3L22 4"></path>
+                    <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                </svg>
+            </div>
+            <div class="logo-text">
+                <span class="logo-main">TaskManager</span>
+                <span class="logo-sub">SoftDev Solutions</span>
+            </div>
+        </div>
+        <div class="navbar-links">
+            <a href="#" class="nav-link active">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+                Inicio
+            </a>
+            <a href="tasks.html" class="nav-link">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="7" height="7" rx="1"></rect>
+                    <rect x="14" y="3" width="7" height="7" rx="1"></rect>
+                    <rect x="3" y="14" width="7" height="7" rx="1"></rect>
+                    <rect x="14" y="14" width="7" height="7" rx="1"></rect>
+                </svg>
+                Tareas
+            </a>
+            <a href="javascript:void(0)" class="nav-link nav-link--exit" onclick="logOut()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                    <polyline points="16 17 21 12 16 7"></polyline>
+                    <line x1="21" y1="12" x2="9" y2="12"></line>
+                </svg>
+                Salir
+            </a>
+        </div>
+    </nav>
+
+    <div class="page">
+
+        <header class="hero">
+            <span class="hero-badge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                    <circle cx="12" cy="12" r="10"></circle>
+                </svg>
+                SoftDev Solutions
+            </span>
+            <h1>TaskManager</h1>
+            <p class="hero-description">
+                Aplicación web para optimizar la administración, seguimiento y asignación de
+                tareas dentro de equipos de trabajo colaborativos, permitiendo que múltiples
+                usuarios interactúen simultáneamente.
+            </p>
+        </header>
+
+        <main>
+            <section class="team-section">
+                <h2 class="section-title">Equipo de desarrollo</h2>
+                <div class="team-grid">
+                    <div class="team-card">
+                        <div class="team-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2l2.5 5 5.5.8-4 4 .9 5.5L12 14.8 7.1 17.3 8 11.8l-4-4 5.5-.8z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <strong>Administrador</strong>
+                            <span>Ramas y aprobaciones</span>
+                        </div>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="16 18 22 12 16 6"></polyline>
+                                <polyline points="8 6 2 12 8 18"></polyline>
+                            </svg>
+                        </div>
+                        <div>
+                            <strong>Desarrollador 1</strong>
+                            <span>Módulo de interfaz</span>
+                        </div>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="16 18 22 12 16 6"></polyline>
+                                <polyline points="8 6 2 12 8 18"></polyline>
+                            </svg>
+                        </div>
+                        <div>
+                            <strong>Desarrollador 2</strong>
+                            <span>Módulo JavaScript</span>
+                        </div>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                            </svg>
+                        </div>
+                        <div>
+                            <strong>Desarrollador 3</strong>
+                            <span>Documentación</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="info-grid">
+                <article class="info-card info-card--objetivo">
+                    <h2 class="section-title">Objetivo del proyecto</h2>
+                    <p>
+                        El objetivo principal de <strong>TaskManager</strong> es administrar de manera
+                        eficiente las tareas y actividades de un equipo de trabajo, garantizando la
+                        organización de flujos, el control de tiempos y la correcta asignación de
+                        responsabilidades bajo un entorno controlado.
+                    </p>
+                </article>
+
+                <article class="info-card info-card--alcance">
+                    <h2 class="section-title">Alcance del proyecto</h2>
+                    <p>
+                        La aplicación web contempla la implementación y liberación de los siguientes
+                        módulos funcionales centrales en su primera versión:
+                    </p>
+                    <ul>
+                        <li>
+                            <span class="li-icon"></span>
+                            <span><strong>Autenticación (Login):</strong> control de acceso seguro para los integrantes
+                                del equipo.</span>
+                        </li>
+                        <li>
+                            <span class="li-icon"></span>
+                            <span><strong>Interfaz de usuario:</strong> panel visual interactivo para la gestión de
+                                actividades.</span>
+                        </li>
+                        <li>
+                            <span class="li-icon"></span>
+                            <span><strong>Lógica (JavaScript):</strong> comportamiento dinámico para crear, actualizar y
+                                borrar tareas en tiempo real.</span>
+                        </li>
+                    </ul>
+                </article>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 SoftDev Solutions &middot; Proyecto de Práctica Integradora</p>
+        </footer>
+
+    </div>
+<script src="../scripts/index.js"></script>
+
+
+</body>
+
+</html>

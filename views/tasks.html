@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Tareas</title>
+
+    <link rel="stylesheet" href="../styles/tasks.css">
+    </style>
+</head>
+<body>
+
+    
+
+   <header class="header">
+    <div>
+        <h1>TaskManager</h1>
+    </div>
+</header>
+
+        <div class="form-container">
+            <h2>Nueva Tarea</h2>
+
+            <input type="text" id="tituloTarea"
+                placeholder="Nombre de la tarea">
+
+            <select id="usuarioTarea"></select>
+
+            <button onclick="agregarTarea()">
+                Agregar Tarea
+            </button>
+        </div>
+
+    <div class="kanban">
+
+        <div class="column">
+            <h2>Pendiente</h2>
+            <div id="pendiente"></div>
+        </div>
+
+        <div class="column">
+            <h2>En Proceso</h2>
+            <div id="proceso"></div>
+        </div>
+
+        <div class="column">
+            <h2>Completada</h2>
+            <div id="completada"></div>
+        </div>
+
+    </div>
+
+
+
+
+<div class="stats">
+
+    <div class="stat-card">
+        <h3 id="totalTareas">0</h3>
+        <p>Total</p>
+    </div>
+
+    <div class="stat-card">
+        <h3 id="pendientesCount">0</h3>
+        <p>Pendientes</p>
+    </div>
+
+    <div class="stat-card">
+        <h3 id="procesoCount">0</h3>
+        <p>En Proceso</p>
+    </div>
+
+    <div class="stat-card">
+        <h3 id="completadasCount">0</h3>
+        <p>Completadas</p>
+    </div>
+
+</div>
+
+
+
+    <div class="activity-panel">
+        <h2>Seguimiento de Actividades</h2>
+        <ul id="activityList"></ul>
+    </div>
+
+    <script src="../scripts/tasks.js"></script>
+
+</body>
+</html>
