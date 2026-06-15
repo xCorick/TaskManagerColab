@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Tareas</title>
+
+    <link rel="stylesheet" href="../styles/tasks.css">
+    </style>
+</head>
+<body>
+
+    <h1>Gestor de Tareas</h1>
+
+    <div class="kanban">
+
+        <div class="column">
+            <h2>Pendiente</h2>
+            <div id="pendiente"></div>
+        </div>
+
+        <div class="column">
+            <h2>En Proceso</h2>
+            <div id="proceso"></div>
+        </div>
+
+        <div class="column">
+            <h2>Completada</h2>
+            <div id="completada"></div>
+        </div>
+
+    </div>
+
+    <div class="activity-panel">
+        <h2>Seguimiento de Actividades</h2>
+        <ul id="activityList"></ul>
+    </div>
+
+    <script src="../scripts/tasks.js"></script>
+
+</body>
+</html>
