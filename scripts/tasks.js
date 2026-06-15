@@ -25,6 +25,13 @@ const tareas = [
             }
         ];
 
+        const usuarios = [
+            "Alex",
+            "Adrian",
+            "María",
+            "Francisco"
+        ];
+
         const activityList = document.getElementById("activityList");
 
         function registrarActividad(texto){
@@ -66,13 +73,31 @@ const tareas = [
                 card.className = "task";
 
                 card.innerHTML = `
-                    <h3>${tarea.titulo}</h3>
-                    <p>Asignado a: ${tarea.usuario}</p>
-                    <button onclick="cambiarEstado(${tarea.id})">
-                        Cambiar Estado
-                    </button>
-                `;
+                <h3>${tarea.titulo}</h3>
 
+                <p>
+                    Asignado a:
+                    ${tarea.usuario}
+                </p>
+
+                <button
+                    onclick="cambiarEstado(${tarea.id})">
+                    Cambiar Estado
+                </button>
+
+                ${
+                    tarea.estado === "Completada"
+                    ?
+                    `<button
+                        class="delete-btn"
+                        onclick="eliminarTarea(${tarea.id})">
+                        Eliminar
+                    </button>`
+                    :
+                    ""
+                }
+            `;
+            
                 if(tarea.estado === "Pendiente"){
                     document.getElementById("pendiente").appendChild(card);
                 }
@@ -83,7 +108,114 @@ const tareas = [
                     document.getElementById("completada").appendChild(card);
                 }
             });
+            actualizarEstadisticas();
         }
+
+
+
+        const selectUsuario =
+        document.getElementById("usuarioTarea");
+
+        usuarios.forEach(usuario => {
+
+            const option =
+            document.createElement("option");
+
+            option.value = usuario;
+            option.textContent = usuario;
+
+            selectUsuario.appendChild(option);
+
+        });
+
+
+
+        function agregarTarea(){
+
+        const titulo =
+        document.getElementById("tituloTarea").value;
+
+        const usuario =
+        document.getElementById("usuarioTarea").value;
+
+        if(titulo.trim() === ""){
+            alert("Ingrese un nombre");
+            return;
+        }
+
+        const nuevaTarea = {
+            id: Date.now(),
+            titulo,
+            usuario,
+            estado: "Pendiente"
+        };
+
+        tareas.push(nuevaTarea);
+
+        registrarActividad(
+            `Nueva tarea "${titulo}" asignada a ${usuario}`
+        );
+
+        document.getElementById("tituloTarea").value = "";
+
+        renderizar();
+    }
+
+
+
+
+    function actualizarEstadisticas(){
+
+    const pendientes =
+        tareas.filter(
+            t => t.estado === "Pendiente"
+        ).length;
+
+    const proceso =
+        tareas.filter(
+            t => t.estado === "En Proceso"
+        ).length;
+
+    const completadas =
+        tareas.filter(
+            t => t.estado === "Completada"
+        ).length;
+
+    document.getElementById("totalTareas")
+        .textContent = tareas.length;
+
+    document.getElementById("pendientesCount")
+        .textContent = pendientes;
+
+    document.getElementById("procesoCount")
+        .textContent = proceso;
+
+    document.getElementById("completadasCount")
+        .textContent = completadas;
+}
+
+
+        function eliminarTarea(id){
+
+            const indice =
+                tareas.findIndex(
+                    t => t.id === id
+                );
+
+            if(indice !== -1){
+
+                registrarActividad(
+                    `La tarea "${tareas[indice].titulo}"
+                    fue eliminada`
+                );
+
+                tareas.splice(indice,1);
+
+                renderizar();
+            }
+        }
+
+
 
         registrarActividad("Sistema iniciado.");
         renderizar();

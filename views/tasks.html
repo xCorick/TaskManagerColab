@@ -10,7 +10,44 @@
 </head>
 <body>
 
+    <div class="stats">
+
+    <div class="stat-card">
+        <h3 id="totalTareas">0</h3>
+        <p>Total</p>
+    </div>
+
+    <div class="stat-card">
+        <h3 id="pendientesCount">0</h3>
+        <p>Pendientes</p>
+    </div>
+
+    <div class="stat-card">
+        <h3 id="procesoCount">0</h3>
+        <p>En Proceso</p>
+    </div>
+
+    <div class="stat-card">
+        <h3 id="completadasCount">0</h3>
+        <p>Completadas</p>
+    </div>
+
+</div>
+
     <h1>Gestor de Tareas</h1>
+
+        <div class="form-container">
+            <h2>Nueva Tarea</h2>
+
+            <input type="text" id="tituloTarea"
+                placeholder="Nombre de la tarea">
+
+            <select id="usuarioTarea"></select>
+
+            <button onclick="agregarTarea()">
+                Agregar Tarea
+            </button>
+        </div>
 
     <div class="kanban">
 
