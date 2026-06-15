@@ -1,4 +1,6 @@
-// Usuarios simulados
+// DATOS SIMULADOS DEL USUARIO ADMINISTRADOR
+
+// Usuario unico para el sistema. Solo el administrador puede acceder.
 const USERS = [
     {
         id: 1,
@@ -6,17 +8,13 @@ const USERS = [
         password: "admin123",
         name: "Administrador",
         role: "admin"
-    },
-    {
-        id: 2,
-        email: "user@softdev.com",
-        password: "user123",
-        name: "Usuario Demo",
-        role: "user"
     }
 ];
 
-// Validación de credenciales
+// FUNCIONES DE VALIDACION Y AUTENTICACION
+
+// Funcion que verifica si las credenciales ingresadas son correctas
+// Recibe email y password, retorna un objeto con exito o error
 function validateCredentials(email, password) {
     const cleanEmail = email.trim().toLowerCase();
     const cleanPassword = password.trim();
@@ -38,17 +36,32 @@ function validateCredentials(email, password) {
 
     return {
         success: false,
-        message: "Correo o contraseña incorrectos"
+        message: "Correo o contrasena incorrectos"
     };
 }
 
-// Guardar sesión
+// FUNCIONES DE GESTION DE SESION
+
+// Guarda la informacion del usuario en sessionStorage y localStorage
+// La sesion persiste mientras la pestaña del navegador este abierta
 function saveSession(user) {
     sessionStorage.setItem("currentUser", JSON.stringify(user));
     localStorage.setItem("lastLogin", new Date().toISOString());
 }
 
-// Mostrar error
+// Verifica si ya existe una sesion activa
+// Si existe, redirige al index para evitar volver al login
+function checkActiveSession() {
+    const currentUser = sessionStorage.getItem("currentUser");
+    if (currentUser) {
+        window.location.href = "index.html";
+    }
+}
+
+// FUNCIONES DE INTERFAZ DE USUARIO
+
+// Muestra un mensaje de error en la interfaz
+// El mensaje desaparece automaticamente a los 3 segundos
 function showError(message) {
     const errorDiv = document.getElementById("errorMessage");
     const errorSpan = errorDiv.querySelector("span");
@@ -64,17 +77,20 @@ function showError(message) {
     }, 3000);
 }
 
-// Redirigir al index
+// Redirige al usuario a la pagina principal del dashboard
 function redirectToHome() {
     window.location.href = "index.html";
 }
 
-// Autocompletar al hacer clic en una credencial demo
-function setupDemoCards() {
-    const demoCards = document.querySelectorAll(".demo-card-item");
+// FUNCION DE AUTOCOMPLETADO DE CREDENCIALES
+
+// Configura el evento de clic en la tarjeta de credenciales
+// Al hacer clic, autocompleta los campos del formulario
+function setupDemoCard() {
+    const demoCard = document.querySelector(".demo-card-item");
     
-    demoCards.forEach(card => {
-        card.addEventListener("click", function() {
+    if (demoCard) {
+        demoCard.addEventListener("click", function() {
             const email = this.getAttribute("data-email");
             const password = this.getAttribute("data-password");
             
@@ -82,7 +98,7 @@ function setupDemoCards() {
                 document.getElementById("email").value = email;
                 document.getElementById("password").value = password;
                 
-                // Efecto visual de éxito
+                // Efecto visual temporal en los bordes
                 const emailInput = document.getElementById("email");
                 const passwordInput = document.getElementById("password");
                 
@@ -95,10 +111,13 @@ function setupDemoCards() {
                 }, 500);
             }
         });
-    });
+    }
 }
 
-// Evento principal del formulario (versión completa)
+// EVENTO PRINCIPAL DEL FORMULARIO DE LOGIN
+
+// Maneja el envio del formulario de login
+// Valida campos, credenciales y gestiona la redireccion
 document.getElementById("loginForm").addEventListener("submit", function(e) {
     e.preventDefault();
 
@@ -106,28 +125,32 @@ document.getElementById("loginForm").addEventListener("submit", function(e) {
     const password = document.getElementById("password").value;
     const btn = document.querySelector(".btn-primary");
 
+    // Validacion de campos vacios
     if (!email || !password) {
         showError("Por favor, completa todos los campos");
         document.getElementById(email ? "password" : "email").focus();
         return;
     }
 
+    // Validacion del formato de correo electronico
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-        showError("Ingresa un correo electrónico válido");
+        showError("Ingresa un correo electronico valido");
         document.getElementById("email").focus();
         return;
     }
 
+    // Validacion de credenciales contra los datos simulados
     const result = validateCredentials(email, password);
 
     if (result.success) {
         saveSession(result.user);
         
-        const originalText = btn.innerHTML;
+        // Cambiar el texto y color del boton mientras se procesa
         btn.innerHTML = '<span>Ingresando...</span>';
         btn.style.background = "linear-gradient(135deg, #10B981, #059669)";
         
+        // Redirigir al dashboard despues de un breve retraso
         setTimeout(() => {
             redirectToHome();
         }, 800);
@@ -136,6 +159,7 @@ document.getElementById("loginForm").addEventListener("submit", function(e) {
         document.getElementById("password").value = "";
         document.getElementById("password").focus();
         
+        // Efecto visual de error en los campos
         const inputs = document.querySelectorAll(".input-group input");
         inputs.forEach(input => {
             input.style.borderColor = "#DC2626";
@@ -146,7 +170,10 @@ document.getElementById("loginForm").addEventListener("submit", function(e) {
     }
 });
 
-// Inicializar autocompletado cuando el DOM esté listo
+// INICIALIZACION AL CARGAR LA PAGINA
+
+// Se ejecuta cuando el DOM esta completamente cargado
 document.addEventListener("DOMContentLoaded", function() {
-    setupDemoCards();
+    checkActiveSession();  // Verifica si ya hay una sesion activa
+    setupDemoCard();       // Configura el autocompletado de credenciales
 });
