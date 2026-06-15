@@ -69,48 +69,78 @@ const tareas = [
 
             tareas.forEach(tarea => {
 
-                const card = document.createElement("div");
-                card.className = "task";
+                let botonTexto = "";
+                let botonClase = "";
 
-                card.innerHTML = `
-                <h3>${tarea.titulo}</h3>
-
-                <p>
-                    Asignado a:
-                    ${tarea.usuario}
-                </p>
-
-                <button
-                    onclick="cambiarEstado(${tarea.id})">
-                    Cambiar Estado
-                </button>
-
-                ${
-                    tarea.estado === "Completada"
-                    ?
-                    `<button
-                        class="delete-btn"
-                        onclick="eliminarTarea(${tarea.id})">
-                        Eliminar
-                    </button>`
-                    :
-                    ""
-                }
-            `;
-            
                 if(tarea.estado === "Pendiente"){
-                    document.getElementById("pendiente").appendChild(card);
+                    botonTexto = "▶ Iniciar";
+                    botonClase = "btn-pendiente";
                 }
                 else if(tarea.estado === "En Proceso"){
-                    document.getElementById("proceso").appendChild(card);
+                    botonTexto = "✓ Completar";
+                    botonClase = "btn-proceso";
                 }
                 else{
-                    document.getElementById("completada").appendChild(card);
+                    botonTexto = "↺ Reabrir";
+                    botonClase = "btn-completada";
                 }
+
+                const card = document.createElement("div");
+
+                card.className =
+                `task ${tarea.estado
+                    .replace(/\s/g, "")
+                    .toLowerCase()}`;
+
+                card.innerHTML = `
+                    <h3>${tarea.titulo}</h3>
+
+                    <p>
+                        <strong>Asignado a:</strong>
+                        ${tarea.usuario}
+                    </p>
+
+                    <button
+                        class="${botonClase}"
+                        onclick="cambiarEstado(${tarea.id})">
+                        ${botonTexto}
+                    </button>
+
+                    ${
+                        tarea.estado === "Completada"
+                        ?
+                        `
+                        <button
+                            class="delete-btn"
+                            onclick="eliminarTarea(${tarea.id})">
+                            🗑 Eliminar
+                        </button>
+                        `
+                        :
+                        ""
+                    }
+                `;
+
+                if(tarea.estado === "Pendiente"){
+                    document
+                        .getElementById("pendiente")
+                        .appendChild(card);
+                }
+                else if(tarea.estado === "En Proceso"){
+                    document
+                        .getElementById("proceso")
+                        .appendChild(card);
+                }
+                else{
+                    document
+                        .getElementById("completada")
+                        .appendChild(card);
+                }
+
             });
+
             actualizarEstadisticas();
         }
-
 
 
         const selectUsuario =
