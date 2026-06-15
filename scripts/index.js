@@ -31,3 +31,14 @@ function logOut() {
     sessionStorage.clear();
     window.location.href = "login.html";
 }
+
+function checkActiveSession() {
+    const currentUser = sessionStorage.getItem("currentUser");
+    if (!currentUser) {
+        window.location.href = "login.html";
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    checkActiveSession();  // Verifica si ya hay una sesion activa
+});

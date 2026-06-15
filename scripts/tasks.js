@@ -25,6 +25,17 @@ const tareas = [
             }
         ];
 
+        function checkActiveSession() {
+            const currentUser = sessionStorage.getItem("currentUser");
+            if (!currentUser) {
+                window.location.href = "login.html";
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            checkActiveSession();  // Verifica si ya hay una sesion activa
+        });
+
         const usuarios = [
             "Alex",
             "Adrian",
