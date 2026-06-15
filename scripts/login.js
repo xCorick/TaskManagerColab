@@ -42,6 +42,12 @@ function validateCredentials(email, password) {
     };
 }
 
+// Guardar sesión
+function saveSession(user) {
+    sessionStorage.setItem("currentUser", JSON.stringify(user));
+    localStorage.setItem("lastLogin", new Date().toISOString());
+}
+
 // Mostrar error
 function showError(message) {
     const errorDiv = document.getElementById("errorMessage");
@@ -58,12 +64,47 @@ function showError(message) {
     }, 3000);
 }
 
-// Evento principal del formulario (versión simple)
+// Redirigir al index
+function redirectToHome() {
+    window.location.href = "index.html";
+}
+
+// Autocompletar al hacer clic en una credencial demo
+function setupDemoCards() {
+    const demoCards = document.querySelectorAll(".demo-card-item");
+    
+    demoCards.forEach(card => {
+        card.addEventListener("click", function() {
+            const email = this.getAttribute("data-email");
+            const password = this.getAttribute("data-password");
+            
+            if (email && password) {
+                document.getElementById("email").value = email;
+                document.getElementById("password").value = password;
+                
+                // Efecto visual de éxito
+                const emailInput = document.getElementById("email");
+                const passwordInput = document.getElementById("password");
+                
+                emailInput.style.borderColor = "#10B981";
+                passwordInput.style.borderColor = "#10B981";
+                
+                setTimeout(() => {
+                    emailInput.style.borderColor = "#E2E8F0";
+                    passwordInput.style.borderColor = "#E2E8F0";
+                }, 500);
+            }
+        });
+    });
+}
+
+// Evento principal del formulario (versión completa)
 document.getElementById("loginForm").addEventListener("submit", function(e) {
     e.preventDefault();
 
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
+    const btn = document.querySelector(".btn-primary");
 
     if (!email || !password) {
         showError("Por favor, completa todos los campos");
@@ -81,9 +122,15 @@ document.getElementById("loginForm").addEventListener("submit", function(e) {
     const result = validateCredentials(email, password);
 
     if (result.success) {
-        // Por ahora solo mostramos éxito en consola
-        console.log("Login exitoso:", result.user);
-        alert("Inicio de sesión exitoso (demo)");
+        saveSession(result.user);
+        
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '<span>Ingresando...</span>';
+        btn.style.background = "linear-gradient(135deg, #10B981, #059669)";
+        
+        setTimeout(() => {
+            redirectToHome();
+        }, 800);
     } else {
         showError(result.message);
         document.getElementById("password").value = "";
@@ -97,4 +144,9 @@ document.getElementById("loginForm").addEventListener("submit", function(e) {
             }, 400);
         });
     }
+});
+
+// Inicializar autocompletado cuando el DOM esté listo
+document.addEventListener("DOMContentLoaded", function() {
+    setupDemoCards();
 });
